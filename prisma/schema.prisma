@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id     String  @id @default(cuid())
+  email  String
+  name   String
+  images Image[]
+}
+
+model Image {
+  id             String          @id @default(cuid())
+  userId         String
+  url            String
+  user           User            @relation(fields: [userId], references: [id])
+  segmentedImage SegmentedImage?
+}
+
+model SegmentedImage {
+  id      String  @id @unique @default(cuid())
+  imageId String  @unique
+  url     String
+  image   Image   @relation(fields: [imageId], references: [id])
+  report  Report?
+}
+
+model Report {
+  id               String         @id @unique @default(cuid())
+  segmentedImageId String         @unique
+  segmentedImage   SegmentedImage @relation(fields: [segmentedImageId], references: [id])
+}
