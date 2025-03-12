@@ -1,7 +1,23 @@
+import Header from "@/components/header";
+import Navbar from "@/components/navbar";
+import Sidebar from "@/components/sidebar";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <>{children}</>;
+  return (
+    <div className="h-full relative">
+      <div className="hidden fixed h-full md:flex md:w-72 z-[80] bg-gray-900">
+        <Sidebar />
+      </div>
+
+      <main className="md:pl-72">
+        <Navbar />
+        <Header />
+        {children}
+      </main>
+    </div>
+  );
 }

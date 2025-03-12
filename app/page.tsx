@@ -10,5 +10,5 @@ export default function Home() {
       </div>
     );
   }
-  return <div>Hello</div>;
+  return <div>Landing Page</div>;
 }
