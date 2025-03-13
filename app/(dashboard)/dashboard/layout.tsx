@@ -1,4 +1,4 @@
-import Header from "@/components/header";
+// import Header from "@/components/header";
 import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
 
@@ -13,9 +13,9 @@ export default function RootLayout({
         <Sidebar />
       </div>
 
-      <main className="md:pl-72">
+      <main className="md:pl-72 w-full">
         <Navbar />
-        <Header />
+        {/* <Header /> */}
         {children}
       </main>
     </div>
