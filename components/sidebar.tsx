@@ -17,7 +17,7 @@ export default function Sidebar() {
   return (
     <div className="w-full bg-linear-to-b from-[#051C2F] to-[#105995] text-white p-6 flex flex-col">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold">safAI</h1>
+        <h1 className="text-2xl font-bold text-center">safAI</h1>
       </div>
 
       <Link
