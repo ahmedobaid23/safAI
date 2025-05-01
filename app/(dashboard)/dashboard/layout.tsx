@@ -1,5 +1,5 @@
 import Header from "@/components/header";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/dashboard-navbar";
 import Sidebar from "@/components/sidebar";
 
 export default function RootLayout({
