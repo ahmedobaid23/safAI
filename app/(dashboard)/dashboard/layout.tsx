@@ -1,4 +1,3 @@
-import Header from "@/components/header";
 import Navbar from "@/components/dashboard-navbar";
 import Sidebar from "@/components/sidebar";
 
@@ -15,7 +14,6 @@ export default function RootLayout({
 
       <main className="md:pl-72 w-full">
         <Navbar />
-        {/* <Header /> */}
         {children}
       </main>
     </div>
