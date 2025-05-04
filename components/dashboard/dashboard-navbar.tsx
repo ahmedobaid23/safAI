@@ -5,14 +5,21 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 // import MobileSidebar from "./mobile-sidebar";
 
-export default function Navbar() {
+interface NavbarProps {
+  title: string;
+}
+
+export default function Navbar(props: NavbarProps) {
   const { user } = useUser();
   return (
     <>
       <header className="flex items-center justify-between px-6 py-4 bg-white border-b">
-        <div className="flex items-center gap-4">
-          <h1 className="text-xl font-bold">Dashboard</h1>
+        <div className="flex items-center gap-4 w-auto">
+          <h1 className="text-3xl font-bold whitespace-nowrap">
+            {props.title}
+          </h1>
         </div>
+
         {user ? (
           <div className="flex w-full justify-end">
             <div className="flex items-center gap-2">

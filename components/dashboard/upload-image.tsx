@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 
 export default function UploadImage() {
   const [image, setImage] = useState<File | null>(null);
-  const [location, setLocation] = useState<string>("");
+  // const [location, setLocation] = useState<string>("");
   const [segmentedImage, setSegmentedImage] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -93,12 +93,12 @@ export default function UploadImage() {
       setIsUploading(true);
       setError(null);
 
-      if (location.trim() === "") {
-        setError("Location is required");
-        return;
-      }
+      // if (location.trim() === "") {
+      //   setError("Location is required");
+      //   return;
+      // }
       const data = new FormData();
-      data.append("location", location);
+      // data.append("location", location);
       data.append("image", image);
 
       const result = await axios.post("/api/segment", data);
@@ -126,7 +126,7 @@ export default function UploadImage() {
 
   return (
     <>
-      <div className="w-full max-w-3xl mx-auto p-6">
+      <div className="w-full max-w-5xl mx-auto p-6 flex items-center justify-center">
         <input
           type="file"
           ref={fileInputRef}
@@ -135,17 +135,17 @@ export default function UploadImage() {
           className="hidden"
         />
 
-        <input
+        {/* <input
           type="text"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
           placeholder="Enter the name of the location"
           className="rounded border-0 bg-gray-100 px-4 py-3 text-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 w-full mb-4"
           aria-label="Location input"
-        />
+        /> */}
         {!preview ? (
           <div
-            className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center cursor-pointer hover:bg-gray-50 transition-colors"
+            className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center cursor-pointer hover:bg-gray-50 transition-colors w-full h-full"
             onClick={triggerFileInput}
             onDragOver={handleDragOver}
             onDrop={handleDrop}
@@ -158,7 +158,7 @@ export default function UploadImage() {
             </h3>
             <p className="text-gray-500 mb-4">or click to browse files</p>
             <button
-              className="bg-[#4CD964] text-black font-medium py-2 px-6 rounded-md"
+              className="bg-[#4CD964] text-black font-medium py-2 px-6 rounded-md hover:bg-green-600 cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 triggerFileInput();
@@ -168,12 +168,12 @@ export default function UploadImage() {
             </button>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-4 w-full">
             <div className="relative border rounded-lg overflow-hidden">
               {!segmentedImage && (
                 <button
                   onClick={handleRemoveImage}
-                  className="absolute top-2 right-2 bg-black bg-opacity-50 text-white rounded-full p-1 hover:bg-opacity-70 transition-colors"
+                  className="absolute top-2 right-2 bg-black bg-opacity-50 text-white rounded-full p-1 hover:bg-opacity-70 transition-colors cursor-pointer"
                 >
                   <X size={20} />
                 </button>
@@ -183,7 +183,7 @@ export default function UploadImage() {
                 alt="Preview"
                 width={800}
                 height={450}
-                className="w-full h-auto object-contain"
+                className="w-full h-[75vh] object-cover"
               />
             </div>
 

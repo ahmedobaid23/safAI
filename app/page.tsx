@@ -1,10 +1,8 @@
-"use client";
-import Connect from "@/components/connect";
-import Footer from "@/components/footer";
-import Hero from "@/components/hero";
-// import LandingNavbar from "@/components/landing-navbar";
-import Problem from "@/components/problem";
-import Services from "@/components/services";
+import Hero from "@/components/landing-page/hero";
+import Problem from "@/components/landing-page/problem";
+import Services from "@/components/landing-page/services";
+import Connect from "@/components/landing-page/connect";
+import Footer from "@/components/landing-page/footer";
 
 export default function Home() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
-import Report from "@/components/report";
-import SegmentedImage from "@/components/segmented-image";
+import Report from "@/components/dashboard/report";
+import SegmentedImage from "@/components/dashboard/segmented-image";
 import { useUser } from "@clerk/nextjs";
 import { useState } from "react";
 

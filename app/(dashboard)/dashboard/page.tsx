@@ -1,16 +1,11 @@
-import UploadImage from "@/components/upload-image";
+import Navbar from "@/components/dashboard/dashboard-navbar";
+import UploadImage from "@/components/dashboard/upload-image";
 
 export default function Page() {
   return (
     <>
-      <div className="border-b">
-        <div className="flex items-center px-6">
-          <button className="py-4 border-b-2 border-[#4CD964] font-medium">
-            Upload Image
-          </button>
-        </div>
-      </div>
-      <div className="w-full max-w-2xl mx-auto p-4">
+      <Navbar title="Dashboard" />
+      <div className="w-full mx-auto p-4 h-full">
         <UploadImage />
       </div>
     </>
