@@ -3,7 +3,7 @@ import { auth } from "@clerk/nextjs/server"
 import { prisma } from "../../../../lib/prisma"
 import type { NextRequest } from "next/server"
 
-export async function DELETE(request: NextRequest, { params }: { params: { blogId: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ blogId: string }> }) {
     try {
         const { userId } = await auth()
 
@@ -11,7 +11,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { blogI
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
         }
 
-        const { blogId } = params
+        const { blogId } = await params
 
         await prisma.favorite.delete({
             where: {
