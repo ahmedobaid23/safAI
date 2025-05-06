@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server"
 import { auth } from "@clerk/nextjs/server"
 import { prisma } from "../../../../lib/prisma"
+import type { NextRequest } from "next/server"
 
-// Delete a favorite
-export async function DELETE(request: Request, { params }: { params: { blogId: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: { blogId: string } }) {
     try {
         const { userId } = await auth()
 
