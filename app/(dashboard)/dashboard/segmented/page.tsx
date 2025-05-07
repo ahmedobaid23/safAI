@@ -1,5 +1,6 @@
 "use client";
 
+import Navbar from "@/components/dashboard/dashboard-navbar";
 import Report from "@/components/dashboard/report";
 import SegmentedImage from "@/components/dashboard/segmented-image";
 import { useUser } from "@clerk/nextjs";
@@ -11,6 +12,7 @@ export default function Page() {
 
   return (
     <div>
+      <Navbar title="Segmented Image" />
       <div className="border-b">
         <div className="flex items-center justify-between px-6">
           <div>
@@ -22,7 +24,7 @@ export default function Page() {
               } mr-8 hover:cursor-pointer`}
               onClick={() => setComponent("segmented-image")}
             >
-              Segmented Image
+              Image
             </button>
 
             {isSignedIn && (

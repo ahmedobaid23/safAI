@@ -10,7 +10,6 @@ export async function POST(request: NextRequest) {
   try {
     const { userId } = await auth();
     const formData = await request.formData();
-    // const location = formData.get("location") as string;
     const image = formData.get("image") as File;
 
     const arrayBuffer = await image.arrayBuffer();
@@ -39,7 +38,7 @@ export async function POST(request: NextRequest) {
     mlFormData.append("file", new Blob([buffer]), image.name);
 
     const MLModelResponse = await axios.post(
-      "http://localhost:8000/predict/",
+      "https://resnet-50fpn-api-production.up.railway.app/predict/",
       mlFormData,
       {
         headers: {

@@ -43,7 +43,7 @@ const LandingNavbar = () => {
         </nav>
 
         <Link
-          href="/sign-in"
+          href="/sign-up"
           className="bg-green-500 hover:bg-green-600 text-black font-medium py-2 px-6 rounded-md transition"
         >
           Login/Register

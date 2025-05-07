@@ -1,6 +1,7 @@
 import React from "react";
 import { SunIcon, ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const teamMembers = [
   {
@@ -8,18 +9,21 @@ const teamMembers = [
     title: "Full Stack Developer",
     email: "aobaid.bese21seecs@seecs.edu.pk",
     linkedin: "https://www.linkedin.com/in/ahmed-obaidullah-975aa4231/",
+    image: "/ahmed.jpeg",
   },
   {
     name: "M. Abdul Basit",
     title: "Machine Learning Engineer",
     email: "mbasit.bese21seecs@seecs.edu.pk",
     linkedin: "#",
+    image: "/basit.jpeg",
   },
   {
     name: "Taimoor Sardar",
     title: "Machine Learning Engineer",
     email: "tsardar.bese21seecs@seecs.edu.pk",
     linkedin: "https://www.linkedin.com/in/taimoor-sardar/",
+    image: "/taimoor.jpeg",
   },
 ];
 
@@ -49,7 +53,15 @@ const Connect = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {teamMembers.map((member) => (
             <div key={member.name} className="flex flex-col">
-              <div className="bg-gray-700/40 rounded-lg aspect-square mb-5"></div>
+              <div className="relative bg-gray-700/40 rounded-lg aspect-square mb-5">
+                <Image
+                  src={member.image}
+                  alt="Preview"
+                  fill
+                  className="object-cover rounded-lg"
+                />
+              </div>
+
               <h3 className="text-xl font-bold mb-1">{member.name}</h3>
               <p className="text-gray-300 mb-1">{member.title}</p>
               <p className="text-gray-400 text-sm mb-4">{member.email}</p>

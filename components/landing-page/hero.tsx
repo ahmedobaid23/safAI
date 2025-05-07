@@ -1,11 +1,9 @@
 import { ArrowRight, Sun } from "lucide-react";
 import Link from "next/link";
-import LandingNavbar from "./landing-navbar";
 
 const Hero = () => {
   return (
-    <section className="bg-[#2F4252] text-white min-h-screen flex flex-col">
-      <LandingNavbar />
+    <section className="bg-[#2F4252] text-white min-h-[90vh] flex flex-col">
       <div className="flex-1 flex flex-col justify-center px-6 xl:px-0 max-w-7xl mx-auto w-full">
         {/* Tagline */}
         <div className="flex items-center gap-2 mb-15 md:mb-25">
@@ -30,7 +28,7 @@ const Hero = () => {
         {/* Buttons */}
         <div className="flex flex-row sm:items-center gap-4">
           <Link
-            href="/sign-in"
+            href="/sign-up"
             className="bg-green-500 hover:bg-green-600 text-black font-medium py-3 px-8 rounded-md transition text-center"
           >
             Sign In

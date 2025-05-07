@@ -22,7 +22,7 @@ export default function SegmentedImage() {
                 alt="Preview"
                 width={800}
                 height={450}
-                className="w-full h-auto object-contain"
+                className="w-full max-h-[75vh] object-cover"
               />
             </div>
           </div>

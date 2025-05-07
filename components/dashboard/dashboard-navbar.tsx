@@ -36,7 +36,7 @@ export default function Navbar(props: NavbarProps) {
           </div>
         ) : (
           <Link
-            href="/sign-in"
+            href="/sign-up"
             className="flex items-center bg-[#4CD964] text-black font-medium py-2 px-4 rounded-md"
           >
             Sign In

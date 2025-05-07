@@ -93,12 +93,7 @@ export default function UploadImage() {
       setIsUploading(true);
       setError(null);
 
-      // if (location.trim() === "") {
-      //   setError("Location is required");
-      //   return;
-      // }
       const data = new FormData();
-      // data.append("location", location);
       data.append("image", image);
 
       const result = await axios.post("/api/segment", data);
@@ -135,14 +130,6 @@ export default function UploadImage() {
           className="hidden"
         />
 
-        {/* <input
-          type="text"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          placeholder="Enter the name of the location"
-          className="rounded border-0 bg-gray-100 px-4 py-3 text-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 w-full mb-4"
-          aria-label="Location input"
-        /> */}
         {!preview ? (
           <div
             className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center cursor-pointer hover:bg-gray-50 transition-colors w-full h-full"
@@ -183,7 +170,7 @@ export default function UploadImage() {
                 alt="Preview"
                 width={800}
                 height={450}
-                className="w-full h-[75vh] object-cover"
+                className="w-full max-h-[75vh] object-cover"
               />
             </div>
 
