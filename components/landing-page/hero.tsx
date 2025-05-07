@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <section className="bg-[#2F4252] text-white min-h-[90vh] flex flex-col">
+    <section className="bg-[#2F4252] text-white min-h-screen flex flex-col">
       <div className="flex-1 flex flex-col justify-center px-6 xl:px-0 max-w-7xl mx-auto w-full">
         {/* Tagline */}
         <div className="flex items-center gap-2 mb-15 md:mb-25">
