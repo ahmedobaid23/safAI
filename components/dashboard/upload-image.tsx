@@ -10,8 +10,6 @@ import { useRouter } from "next/navigation";
 
 export default function UploadImage() {
   const [image, setImage] = useState<File | null>(null);
-  // const [location, setLocation] = useState<string>("");
-  const [segmentedImage, setSegmentedImage] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -96,16 +94,10 @@ export default function UploadImage() {
       const data = new FormData();
       data.append("image", image);
 
-      const result = await axios.post("/api/segment", data);
+      const response = await axios.post("/api/segment", data);
 
-      setSegmentedImage(result.data.segmentedImage);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        localStorage.setItem("image", base64String);
-      };
-      reader.readAsDataURL(image);
-      localStorage.setItem("segmentedImage", result.data.segmentedImage);
+      localStorage.setItem("image", response.data.orignalImageUrl);
+      localStorage.setItem("segmentedImage", response.data.segmentedImageUrl);
       router.push("/dashboard/segmented");
     } catch (err) {
       setError("Failed to upload image. Please try again.");
@@ -157,14 +149,12 @@ export default function UploadImage() {
         ) : (
           <div className="space-y-4 w-full">
             <div className="relative border rounded-lg overflow-hidden">
-              {!segmentedImage && (
-                <button
-                  onClick={handleRemoveImage}
-                  className="absolute top-2 right-2 bg-black bg-opacity-50 text-white rounded-full p-1 hover:bg-opacity-70 transition-colors cursor-pointer"
-                >
-                  <X size={20} />
-                </button>
-              )}
+              <button
+                onClick={handleRemoveImage}
+                className="absolute top-2 right-2 bg-black bg-opacity-50 text-white rounded-full p-1 hover:bg-opacity-70 transition-colors cursor-pointer"
+              >
+                <X size={20} />
+              </button>
               <Image
                 src={preview || "/placeholder.svg"}
                 alt="Preview"
@@ -199,31 +189,6 @@ export default function UploadImage() {
             </div>
           </div>
         )}
-
-        {/* {segmentedImage && (
-          <div className="mt-8">
-            <h3 className="text-lg font-medium mb-2">Segmented Image</h3>
-            <div className="space-y-4">
-              <div className="relative border rounded-lg overflow-hidden">
-                {!segmentedImage && (
-                  <button
-                    onClick={handleRemoveImage}
-                    className="absolute top-2 right-2 bg-black bg-opacity-50 text-white rounded-full p-1 hover:bg-opacity-70 transition-colors"
-                  >
-                    <X size={20} />
-                  </button>
-                )}
-                <Image
-                  src={segmentedImage}
-                  alt="Preview"
-                  width={800}
-                  height={450}
-                  className="w-full h-auto object-contain"
-                />
-              </div>
-            </div>
-          </div>
-        )} */}
 
         {error && (
           <div className="mt-4 p-3 bg-red-100 border border-red-300 text-red-700 rounded-md">
