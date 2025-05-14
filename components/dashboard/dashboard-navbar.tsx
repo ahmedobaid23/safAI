@@ -25,11 +25,8 @@ export default function Navbar(props: NavbarProps) {
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-3">
                 <UserButton />
-                <div>
+                <div className="hidden sm:block">
                   <p className="font-medium">{`${user?.firstName} ${user?.lastName}`}</p>
-                  <p className="text-sm text-[#808191]">
-                    {user?.emailAddresses[0].emailAddress}
-                  </p>
                 </div>
               </div>
             </div>

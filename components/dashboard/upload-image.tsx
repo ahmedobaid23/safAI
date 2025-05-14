@@ -79,7 +79,7 @@ export default function UploadImage() {
 
       const response = await axios.post("/api/segment", data);
 
-      localStorage.setItem("image", response.data.orignalImageUrl);
+      localStorage.setItem("image", response.data.originalImageUrl);
       localStorage.setItem("segmentedImage", response.data.segmentedImageUrl);
 
       toast.success("Image uploaded successfully! Processing complete.");

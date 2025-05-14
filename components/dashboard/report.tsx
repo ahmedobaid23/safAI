@@ -17,9 +17,9 @@ export default function Report() {
       <div className="mt-8 space-y-4">
         <div className="flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0">
           <div className="flex-1 relative border rounded-lg overflow-hidden">
-            <h2 className="text-lg font-semibold mb-2 text-center">Original</h2>
+            <h2 className="text-lg font-semibold my-2 text-center">Original</h2>
             <Image
-              src={image ?? ""}
+              src={image || "/logo.png"}
               alt="Original Preview"
               width={1200}
               height={675}
@@ -27,11 +27,11 @@ export default function Report() {
             />
           </div>
           <div className="flex-1 relative border rounded-lg overflow-hidden">
-            <h2 className="text-lg font-semibold mb-2 text-center">
+            <h2 className="text-lg font-semibold my-2 text-center">
               Segmented
             </h2>
             <Image
-              src={segmentedImage ?? ""}
+              src={segmentedImage ?? "/logo.png"}
               alt="Segmented Preview"
               width={1200}
               height={675}
