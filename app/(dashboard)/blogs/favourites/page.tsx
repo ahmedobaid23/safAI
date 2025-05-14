@@ -8,6 +8,7 @@ import { Heart } from "lucide-react";
 import Navbar from "@/components/dashboard/dashboard-navbar";
 import Loading from "../explore/loading";
 import BlogCard from "@/components/dashboard/blog-card";
+import { toast } from "sonner";
 
 interface Source {
   id: string | null;
@@ -67,6 +68,7 @@ export default function FavouritesPage() {
       const data = await response.json();
       setFavorites(data.favourites || []);
     } catch (error) {
+      toast.error("Failed to fetch favorites. Please try again later.");
       console.error("Error fetching favorites:", error);
     } finally {
       setLoading(false);
@@ -109,6 +111,7 @@ export default function FavouritesPage() {
         setFavorites((prev) => prev.filter((fav) => fav.url !== blog.url));
       }
     } catch (error) {
+      toast.error("Failed to remove favorite. Please try again later.");
       console.error("Error removing favorite:", error);
     } finally {
       setFavoritingStates((prev) => ({ ...prev, [blog.url]: false }));

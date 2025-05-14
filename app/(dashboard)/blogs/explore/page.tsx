@@ -6,6 +6,7 @@ import { useUser } from "@clerk/nextjs";
 import Loading from "./loading";
 import Navbar from "@/components/dashboard/dashboard-navbar";
 import BlogCard from "@/components/dashboard/blog-card";
+import { toast } from "sonner";
 
 interface Source {
   id: string | null;
@@ -56,16 +57,20 @@ export default function ExploreBlogsPage() {
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      // Fetch blogs
       const blogsResponse = await fetch("/api/blogs");
+
+      const data = await blogsResponse.json();
+
       if (!blogsResponse.ok) {
-        throw new Error("Failed to fetch blogs");
+        throw new Error(data.error);
       }
-      const blogsData: BlogResponse = await blogsResponse.json();
+
+      const blogsData: BlogResponse = data;
       setBlogs(blogsData.articles);
       setTotalResults(blogsData.articles.length);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      toast.error("Failed to fetch blogs. Please try again later.");
+      console.error("[BLOGS_ERROR]:", error);
     } finally {
       setLoading(false);
     }
@@ -73,12 +78,13 @@ export default function ExploreBlogsPage() {
 
   const fetchFavorites = async () => {
     try {
-      const favoritesResponse = await fetch("/api/favourites");
+      const favoritesResponse = await fetch("/api/blogs/favourites");
       if (favoritesResponse.ok) {
         const favoritesData = await favoritesResponse.json();
         setFavorites(favoritesData.favourites || []);
       }
     } catch (error) {
+      toast.error("Failed to fetch favorites. Please try again later.");
       console.error("Error fetching favorites:", error);
     }
   };
@@ -98,7 +104,7 @@ export default function ExploreBlogsPage() {
 
     try {
       if (!isFavorited(blog)) {
-        const response = await fetch("/api/favourites", {
+        const response = await fetch("/api/blogs/favourites", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -113,7 +119,7 @@ export default function ExploreBlogsPage() {
           }
         }
       } else {
-        const response = await fetch("/api/favourites", {
+        const response = await fetch("/api/blogs/favourites", {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -126,6 +132,7 @@ export default function ExploreBlogsPage() {
         }
       }
     } catch (error) {
+      toast.error("Failed to add/remove favorite. Please try again later.");
       console.error("Error toggling favorite:", error);
     } finally {
       setFavoritingStates((prev) => ({ ...prev, [blog.url]: false }));

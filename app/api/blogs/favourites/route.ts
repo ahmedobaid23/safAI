@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { auth } from "@clerk/nextjs/server"
-import { prisma } from "../../../lib/prisma"
+import { prisma } from "../../../../lib/prisma"
 
 // Get all favorites for the current user
 export async function GET() {
@@ -8,7 +8,7 @@ export async function GET() {
         const { userId } = await auth()
 
         if (!userId) {
-            return NextResponse.json({ favourites: [] })
+            return NextResponse.json({ favourites: [] }, { status: 401 })
         }
 
         const favourites = await prisma.favorite.findMany({
@@ -21,7 +21,7 @@ export async function GET() {
         return NextResponse.json({ favourites }, { status: 200 })
     } catch (error) {
         console.error("Error fetching favourites:", error)
-        return NextResponse.json({ favourites: [] })
+        return NextResponse.json({ favourites: [] }, { status: 500 })
     }
 }
 

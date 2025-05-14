@@ -66,7 +66,7 @@ export async function GET() {
             )
         }
 
-        return NextResponse.json(data)
+        return NextResponse.json(data, { status: 200 })
     } catch (error) {
         console.error("Error fetching news:", error)
         return NextResponse.json(
@@ -75,3 +75,4 @@ export async function GET() {
         )
     }
 }
+
