@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { ArrowRight, Upload, X, Loader2 } from "lucide-react";
 import axios from "axios";
@@ -67,6 +67,7 @@ export default function UploadImage() {
     if (fileInputRef.current?.value) {
       fileInputRef.current.value = "";
     }
+    localStorage.removeItem("galleryImage");
   };
 
   const handleSegment = async () => {
@@ -89,12 +90,31 @@ export default function UploadImage() {
       console.error(err);
     } finally {
       setIsUploading(false);
+      localStorage.removeItem("galleryImage");
     }
   };
 
   const triggerFileInput = () => {
     fileInputRef.current?.click();
   };
+
+  useEffect(() => {
+    const galleryImage = localStorage.getItem("galleryImage");
+    if (galleryImage) {
+      setPreview(galleryImage);
+      fetch(galleryImage)
+        .then((res) => res.blob())
+        .then((blob) => {
+          const filename = galleryImage.split("/").pop() || "image.png";
+          const file = new File([blob], filename, { type: blob.type });
+          setImage(file);
+        })
+        .catch((err) => {
+          console.error("Failed to convert image URL to File:", err);
+          toast.error("Error loading image from gallery.");
+        });
+    }
+  }, []);
 
   return (
     <div className="w-full max-w-5xl mx-auto p-6 flex items-center justify-center">
@@ -135,9 +155,15 @@ export default function UploadImage() {
           <div className="relative border rounded-lg overflow-hidden">
             <button
               onClick={handleRemoveImage}
-              className="absolute top-2 right-2 bg-black bg-opacity-50 text-white rounded-full p-1 hover:bg-opacity-70 transition-colors cursor-pointer"
+              disabled={isUploading}
+              className={`absolute top-2 right-2 bg-black bg-opacity-50 text-white rounded-full p-1 hover:bg-opacity-70 transition-colors `}
             >
-              <X size={20} />
+              <X
+                size={20}
+                className={`cursor-pointer ${
+                  isUploading ? "cursor-not-allowed" : ""
+                }`}
+              />
             </button>
             <Image
               src={preview || "/placeholder.svg"}
@@ -150,10 +176,10 @@ export default function UploadImage() {
 
           <div className="flex justify-center">
             <button
-              className={`flex items-center justify-center bg-[#4CD964] text-black font-medium py-3 px-8 rounded-md ${
+              className={`flex items-center justify-center bg-[#4CD964] text-black font-medium py-3 px-8 rounded-md cursor-pointer ${
                 isUploading
                   ? "opacity-70 cursor-not-allowed"
-                  : "hover:bg-opacity-90"
+                  : "hover:bg-green-600"
               }`}
               onClick={handleSegment}
               disabled={isUploading}

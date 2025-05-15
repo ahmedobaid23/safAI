@@ -59,7 +59,7 @@ export default function FavouritesPage() {
   const fetchFavorites = async () => {
     setLoading(true);
     try {
-      const response = await fetch("/api/favourites");
+      const response = await fetch("/api/blogs/favourites");
 
       if (!response.ok) {
         throw new Error("Failed to fetch favorites");
@@ -99,7 +99,7 @@ export default function FavouritesPage() {
     setFavoritingStates((prev) => ({ ...prev, [blog.url]: true }));
 
     try {
-      const response = await fetch("/api/favourites", {
+      const response = await fetch("/api/blogs/favourites", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

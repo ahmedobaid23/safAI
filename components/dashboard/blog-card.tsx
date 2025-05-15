@@ -73,7 +73,7 @@ export default function BlogCard({
       <div className="p-6 md:w-2/3">
         <div className="flex justify-between items-start">
           <Link href={blog.url} target="_blank" className="block">
-            <h2 className="text-xl md:text-2xl font-bold mb-3 text-[#051C2F] line-clamp-2 hover:text-3xl animate duration-600">
+            <h2 className="text-xl md:text-2xl font-bold mb-3 text-[#051C2F] line-clamp-2 hover:text-3xl animate duration-450">
               {blog.title}
             </h2>
           </Link>

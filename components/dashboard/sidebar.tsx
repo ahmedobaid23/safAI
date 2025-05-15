@@ -1,6 +1,6 @@
 "use client";
 // import { useUser } from "@clerk/nextjs";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, ImageIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -22,6 +22,7 @@ export default function Sidebar() {
         ...(user ? [{ name: "Favourites", path: "/blogs/favourites" }] : []),
       ],
     },
+    { name: "Gallery", path: "/gallery", icon: ImageIcon },
   ];
 
   const toggleItem = (itemName: string) => {
