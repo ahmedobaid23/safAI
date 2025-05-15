@@ -16,7 +16,7 @@ const teamMembers = [
     title: "Machine Learning Engineer",
     email: "mbasit.bese21seecs@seecs.edu.pk",
     linkedin: "#",
-    image: "/basit.jpeg",
+    image: "/basit.jpg",
   },
   {
     name: "Taimoor Sardar",
