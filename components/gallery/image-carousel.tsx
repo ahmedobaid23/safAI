@@ -59,7 +59,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
   return (
     <div className="relative">
       {/* Image container */}
-      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg">
+      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg z-0 boirder border-lg-black">
         <Image
           src={images[currentIndex] || "/placeholder.svg"}
           alt={`Satellite image ${currentIndex + 1}`}
@@ -119,7 +119,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
       <div className="mt-6 flex justify-center">
         <button
           onClick={handleUseImage}
-          className="bg-[#4CD964] text-black font-medium py-3 px-8 rounded-md hover:bg-green-600 transition-colors flex items-center gap-2 cursor-pointer z-10000"
+          className="bg-[#4CD964] text-black font-medium py-3 px-8 rounded-md hover:bg-green-600 transition-colors flex items-center gap-2 cursor-pointer z-10"
         >
           Use this Image
         </button>
